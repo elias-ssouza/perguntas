@@ -22,8 +22,9 @@ class _PerguntaAPPState extends State<PerguntaAPP>{
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Perguntas'),
-        ),
+          title: const Text('Perguntas', 
+          textAlign: TextAlign.center),
+          ),
         body: Column(
           children: <Widget>[
             Questao(perguntas[_perguntaSelecionada]),
