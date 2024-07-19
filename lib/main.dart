@@ -6,26 +6,44 @@ main () => runApp(PerguntaAPP());
 
 class _PerguntaAPPState extends State<PerguntaAPP>{
   var _perguntaSelecionada = 0;
+  var _notaTotal = 0;
   final _perguntas = const [
       { 
       'texto': 'Qual a sua cor favorita?',
-      'respostas':['Preto','Vermelho','Verde','Branco']
+      'respostas':[
+        {'texto': 'Preto', 'nota': 8},
+        {'texto': 'Vermelho', 'nota': 7},
+        {'texto': 'Verde', 'nota': 5},
+        {'texto': 'Branco', 'nota': 1}
+        ]
       },
       {
       'texto': 'Qual é o seu animal favorito?',
-      'respostas':['Coelho','Cobra','Elefante','Leão']
+      'respostas':[
+        {'texto': 'Coelho', 'nota': 8},
+        {'texto': 'Cobra', 'nota': 6},
+        {'texto': 'Elefante', 'nota': 5},
+        {'texto': 'Leão', 'nota': 1},
+        ]
       },
       {
         'texto': 'Qual é o seu instrutor favorito?',
-        'respostas': ['Maria','João','Léo','Pedro']
+        'respostas': [
+          {'texto': 'Maria', 'nota': 7},
+          {'texto': 'João', 'nota': 6},
+          {'texto': 'Léo', 'nota': 5},
+          {'texto': 'Pedro', 'nota':4},
+          ]
       }
     ];
-  void _responder() {
+  void _responder(int nota) {
     if(temPerguntaSelecionada){
       setState(() {
     _perguntaSelecionada++;
+    _notaTotal += nota; 
     });
     }
+    print (_notaTotal);
   }
 
   bool get temPerguntaSelecionada{
@@ -42,7 +60,10 @@ class _PerguntaAPPState extends State<PerguntaAPP>{
         appBar: AppBar(
           title: const Text('Perguntas'),
           ),
-        body: temPerguntaSelecionada ? Questionario(perguntas: _perguntas, perguntaSelecionada: _perguntaSelecionada, responder: _responder): Resultado(), 
+        body
+        : temPerguntaSelecionada ? Questionario(perguntas: _perguntas, perguntaSelecionada 
+        : _perguntaSelecionada, responder: _responder)
+        : Resultado(_notaTotal), 
     ),
     );
   }
